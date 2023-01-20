@@ -1,0 +1,88 @@
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[3].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[3].use[3]!./src/style.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************/
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+/*# sourceMappingURL=style.css.map*/
+
+
+
+.buenavista-blocks__top-right-plant {
+  background: url(./images/topright-leaf.png) no-repeat;
+  background-position: top right;
+  background-size: contain;
+}
+
+.buenavista-blocks__bottom-left-plant {
+  background: url(./images/bottom-left-leaf.png) no-repeat;
+  background-position: bottom left;
+  background-size: contain;
+}
+.buenavista-blocks__plants {
+  background: url(./images/topright-leaf.png) no-repeat, url(./images/bottom-left-leaf.png) no-repeat;
+  background-position: top right, bottom left;
+  background-size: 350px;
+}
+
+.aligncenter  .buenavista-blocks-bouncing-arrow, .aligncenter{
+  text-align: center;
+}
+.alignleft  .buenavista-blocks-bouncing-arrow, .alignleft{
+  text-align: left;
+}
+.alignright  .buenavista-blocks-bouncing-arrow, .alignright{
+  text-align: right;
+}
+
+.buenavista-blocks-bouncing-arrow {
+  display: inline-block;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.top-border {
+  border-top:3px solid lightcoral;
+}
+.bottom-border {
+  border-bottom:3px solid lightcoral;
+}
+
+
+.bounce-arrow {
+  display: inline-block;
+  margin: 0 auto;
+  width: 100%;
+	animation: bounce 2s infinite;
+	-webkit-animation: bounce 2s infinite;
+	-moz-animation: bounce 2s infinite;
+	-o-animation: bounce 2s infinite;
+}
+
+@-webkit-keyframes bounce {
+	0%, 20%, 50%, 80%, 100% {-webkit-transform: translateY(0);}	
+	40% {-webkit-transform: translateY(-30px);}
+	60% {-webkit-transform: translateY(-15px);}
+}
+ 
+@-moz-keyframes bounce {
+	0%, 20%, 50%, 80%, 100% {-moz-transform: translateY(0);}
+	40% {-moz-transform: translateY(-30px);}
+	60% {-moz-transform: translateY(-15px);}
+}
+ 
+@-o-keyframes bounce {
+	0%, 20%, 50%, 80%, 100% {-o-transform: translateY(0);}
+	40% {-o-transform: translateY(-30px);}
+	60% {-o-transform: translateY(-15px);}
+}
+@keyframes bounce {
+	0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+	40% {transform: translateY(-30px);}
+	60% {transform: translateY(-15px);}
+}
+
+/*# sourceMappingURL=style-index.css.map*/
