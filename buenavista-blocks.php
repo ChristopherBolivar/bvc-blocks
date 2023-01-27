@@ -69,10 +69,86 @@ function register_bvc_modal_block() {
 	) );
 }
 
+//register Client logos
+function register_client_logos_block() {
+	wp_register_script(
+		'clientLogos-block',
+		plugins_url( 'clientLogos/block.js', __FILE__ ),
+		array( 'wp-blocks', 'wp-element', 'wp-editor' )
+	);
 
+	register_block_type( 'buenavista-blocks/clientlogos', array(
+		'editor_script' => 'clientLogos-block',
+	) );
+}
+
+
+
+//display client logos dynamic block
+function bvc_client_logos_dynamic_render_callback($attributes) {
+	$posts = get_posts(array(
+		'post_type' => 'clients',
+		'posts_per_page' => -1,
+		'orderby' => 'title',
+		'order' => 'ASC'
+	));
+
+	$postsMarkup = '';
+
+	
+	foreach($posts as $post) {
+		$postsMarkup .= '<div class="client-logo"><img src="' . get_the_post_thumbnail_url($post->ID) . '" alt="' . $post->post_title . '"/></div>';
+	}
+
+	$finalMarkup = '<div class="buenavista-blocks-client-marquee"><div class="client-logo-track">' . $postsMarkup . '</div></div>';
+
+
+	return $finalMarkup;
+}
+
+function bvc_client_logos_dynamic() {
+    // automatically load dependencies and version
+    $asset_file = include( plugin_dir_path( __FILE__ ) . 'build/index.asset.php');
+
+    wp_register_script(
+        'bvc-client-logos-dynamic',
+        plugins_url( 'build/block.js', __FILE__ ),
+        $asset_file['dependencies'],
+        $asset_file['version']
+    );
+
+    register_block_type( 'buenavista-blocks/clientlogos', array(
+        'api_version' => 2,
+        'editor_script' => 'bvc-client-logos-dynamic',
+        'render_callback' => 'bvc_client_logos_dynamic_render_callback'
+    ) );
+
+}
+add_action( 'init', 'bvc_client_logos_dynamic' );
 
 //enqueue style-index.css in the frontend
 function enqueue_style_index() {
 	wp_enqueue_style( 'style-index', plugins_url( '/build/style-index.css', __FILE__ ) );
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_style_index' );
+
+//Add featured image to rest api
+add_action('rest_api_init', 'bvc_get_featured_img_rest_api' );
+function bvc_get_featured_img_rest_api(){
+    register_rest_field( array('clients', 'work'),
+        'fimg_url',
+        array(
+            'get_callback'    => 'get_rest_featured_image_wp_podcasts_305786',
+            'update_callback' => null,
+            'schema'          => null,
+        )
+    );
+}
+
+function get_rest_featured_image_wp_podcasts_305786( $object, $field_name, $request ) {
+    if( $object['featured_media'] ){
+        $img = wp_get_attachment_image_src( $object['featured_media'], 'large' );
+        return $img[0];
+    }
+    return false;
+}
