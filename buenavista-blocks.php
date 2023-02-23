@@ -126,6 +126,57 @@ function bvc_client_logos_dynamic() {
 }
 add_action( 'init', 'bvc_client_logos_dynamic' );
 
+//register and display work archive dynamic block
+function bvc_work_archive_dynamic_render_callback($attributes) {
+	$posts = get_posts(array(
+		'post_type' => 'work',
+		'posts_per_page' => -1,
+		'orderby' => 'title',
+		'order' => 'ASC'
+	));
+
+	$postsMarkup = '';
+
+	
+	foreach($posts as $post) {
+		$postsMarkup .= '<div class="buenavista-blocks-work-info-wrapper">
+		<div class="buenavista-blocks-work-overlay">
+		  <div class="animated animatedFadeInUp fadeInUp">
+			<h2>'. $post->post_title .'</h2>
+			<p><a href="' . get_permalink($post->ID) . '">View Work</a></p>
+		  </div>
+		</div>
+		<div class="buenavista-blocks-work-image">
+		  <img src="'. get_the_post_thumbnail_url($post->ID). '" />
+		</div>
+	  </div>';
+	}
+
+	$finalMarkup = '<div class="buenavista-blocks-work-wrapper">' . $postsMarkup . '</div>';
+
+	return $finalMarkup;
+}
+
+function bvc_work_archive_dynamic() {
+	// automatically load dependencies and version
+	$asset_file = include( plugin_dir_path( __FILE__ ) . 'build/index.asset.php');
+
+	wp_register_script(
+		'bvc-work-archive-dynamic',
+		plugins_url( 'build/block.js', __FILE__ ),
+		$asset_file['dependencies'],
+		$asset_file['version']
+	);
+
+	register_block_type( 'buenavista-blocks/workarchive', array(
+		'api_version' => 2,
+		'editor_script' => 'bvc-work-archive-dynamic',
+		'render_callback' => 'bvc_work_archive_dynamic_render_callback'
+	) );
+
+}
+add_action( 'init', 'bvc_work_archive_dynamic' );
+
 //enqueue style-index.css in the frontend
 function enqueue_style_index() {
 	wp_enqueue_style( 'style-index', plugins_url( '/build/style-index.css', __FILE__ ) );

@@ -23,6 +23,7 @@ import "./01-Plant-Section";
 import "./02-Bouncing-Arrow";
 import "./03-BVC-Modal";
 import "./04-Client-Logos";
+import "./05-Work-Archive";
 
 /**
  * Every block starts by registering a new block type definition.
