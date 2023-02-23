@@ -284,6 +284,7 @@ const {
   InnerBlocks,
   InspectorControls
 } = wp.editor;
+
 const {
   Button,
   IconButton,
@@ -328,6 +329,16 @@ registerBlockType("buenavista-blocks/bvcmodal", {
       className,
       setAttributes
     } = props;
+
+    //useState storing url parameters
+    const [url, setUrl] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)("");
+
+    //useEffect to update url parameters
+    (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+      setUrl(window.location.hash);
+      console.log(window.location);
+      console.log("url", url);
+    }, [url]);
     return [(0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(PanelBody, {
       title: __("Ripped Paper Cover Block", "buenavista-blocks_blocks")
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -336,9 +347,9 @@ registerBlockType("buenavista-blocks/bvcmodal", {
       className: "components-base-control__field"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
       className: "components-base-control__label"
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Hello")))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "buenavista-blocks-block buenavista-blocks-modal buenavista-blocks-editable"
-    }, "hello")];
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "no")))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "buenavista-blocks-block buenavista-blocks-modal buenavista-blocks-editable modal-deactivate"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(InnerBlocks, null), "yoyoyo")];
   },
   save: props => {
     // Lift info from props and populate various constants.
@@ -350,8 +361,8 @@ registerBlockType("buenavista-blocks/bvcmodal", {
       }
     } = props;
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "buenavista-blocks-block buenavista-blocks-modal buenavista-blocks-editable"
-    }, "hello");
+      className: "buenavista-blocks-block buenavista-blocks-modal buenavista-blocks-editable modal-deactivate"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(InnerBlocks.Content, null));
   }
 });
 
