@@ -2,16 +2,13 @@ const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
 const { MediaUpload, RichText, InnerBlocks, InspectorControls } = wp.editor;
 
-import { useEffect, useState } from "@wordpress/element";
 
 const {
-	Button,
-	IconButton,
-	SelectControl,
+	
 	PanelBody,
-	ToggleControl,
-	ColorPalette,
 } = wp.components;
+
+import { useEffect, useState } from "@wordpress/element";
 
 import { __experimentalInputControl as InputControl } from "@wordpress/components";
 import BouncingArrow from "../SVGComponent.js";
@@ -34,6 +31,10 @@ registerBlockType("buenavista-blocks/bvcmodal", {
 			type: "string",
 			default: "#",
 		},
+		modalId: {
+			type: "string",
+			default: window.location.hash.substring(1),
+		},
 	},
 	supports: {
 		align: ["center", "left", "right"],
@@ -44,22 +45,30 @@ registerBlockType("buenavista-blocks/bvcmodal", {
 		// console.info(props);
 		// Lift info from props and populate various constants.
 		const {
-			attributes: { arrowColor, arrowWidth, anchorLink },
+			attributes: { modalId },
 			className,
 			setAttributes,
 		} = props;
 
-		//useState storing url parameters
-		const [url, setUrl] = useState("");
-		
+		//useState if modal id equals the hash
+		const [activeModal, setActivateModal ] = useState(false);
+	
 
-		//useEffect to update url parameters
 		useEffect(() => {
-			setUrl(window.location.hash);
-			console.log(window.location)
-			console.log("url", url)
-		}, [url]);
+			function handleHashChange() {
+			  const hash = window.location.hash.substring(1);
+			  if(hash !== modalId) return;
+			  setActivateModal(true);
+			}
+		
+			window.addEventListener("hashchange", handleHashChange, false);
+		
+			return () => {
+			  window.removeEventListener("hashchange", handleHashChange, false);
+			};
+		  }, []);
 
+		
 		return [
 			<InspectorControls>
 				<PanelBody
@@ -68,25 +77,29 @@ registerBlockType("buenavista-blocks/bvcmodal", {
 					<div className="components-base-control">
 						<div className="components-base-control__field">
 							<label className="components-base-control__label">
-								<h2>no</h2>
+							<InputControl
+								value={ modalId }
+								onChange={ ( id ) => setAttributes( { modalId: id } ) }
+							/><br/>
+								<button><a  href={`#${modalId}`}>Activate Modal</a></button>
 							</label>
 						</div>
 					</div>
 				</PanelBody>
 			</InspectorControls>,
-			<div className="buenavista-blocks-block buenavista-blocks-modal buenavista-blocks-editable modal-deactivate">
-				<InnerBlocks />yoyoyo
+			<div data-modal-id={modalId} className={`buenavista-blocks-block buenavista-blocks-modal buenavista-blocks-editable`}>
+				<InnerBlocks />
 			</div>,
 		];
 	},
 	save: (props) => {
 		// Lift info from props and populate various constants.
 		const {
-			attributes: { arrowColor, arrowWidth, anchorLink },
+			attributes: { modalId },
 		} = props;
 
 		return (
-			<div className="buenavista-blocks-block buenavista-blocks-modal buenavista-blocks-editable modal-deactivate">
+			<div data-modal-id={modalId} className={`buenavista-blocks-block buenavista-blocks-modal modal-deactivate buenavista-blocks-editable`}>
 				<InnerBlocks.Content />
 			</div>
 		);

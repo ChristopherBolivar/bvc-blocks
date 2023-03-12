@@ -284,15 +284,10 @@ const {
   InnerBlocks,
   InspectorControls
 } = wp.editor;
-
 const {
-  Button,
-  IconButton,
-  SelectControl,
-  PanelBody,
-  ToggleControl,
-  ColorPalette
+  PanelBody
 } = wp.components;
+
 
 
 registerBlockType("buenavista-blocks/bvcmodal", {
@@ -311,6 +306,10 @@ registerBlockType("buenavista-blocks/bvcmodal", {
     anchorLink: {
       type: "string",
       default: "#"
+    },
+    modalId: {
+      type: "string",
+      default: window.location.hash.substring(1)
     }
   },
   supports: {
@@ -322,23 +321,25 @@ registerBlockType("buenavista-blocks/bvcmodal", {
     // Lift info from props and populate various constants.
     const {
       attributes: {
-        arrowColor,
-        arrowWidth,
-        anchorLink
+        modalId
       },
       className,
       setAttributes
     } = props;
 
-    //useState storing url parameters
-    const [url, setUrl] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)("");
-
-    //useEffect to update url parameters
+    //useState if modal id equals the hash
+    const [activeModal, setActivateModal] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
     (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-      setUrl(window.location.hash);
-      console.log(window.location);
-      console.log("url", url);
-    }, [url]);
+      function handleHashChange() {
+        const hash = window.location.hash.substring(1);
+        if (hash !== modalId) return;
+        setActivateModal(true);
+      }
+      window.addEventListener("hashchange", handleHashChange, false);
+      return () => {
+        window.removeEventListener("hashchange", handleHashChange, false);
+      };
+    }, []);
     return [(0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(InspectorControls, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(PanelBody, {
       title: __("Ripped Paper Cover Block", "buenavista-blocks_blocks")
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
@@ -347,21 +348,28 @@ registerBlockType("buenavista-blocks/bvcmodal", {
       className: "components-base-control__field"
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
       className: "components-base-control__label"
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "no")))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "buenavista-blocks-block buenavista-blocks-modal buenavista-blocks-editable modal-deactivate"
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(InnerBlocks, null), "yoyoyo")];
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.__experimentalInputControl, {
+      value: modalId,
+      onChange: id => setAttributes({
+        modalId: id
+      })
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+      href: `#${modalId}`
+    }, "Activate Modal"))))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      "data-modal-id": modalId,
+      className: `buenavista-blocks-block buenavista-blocks-modal buenavista-blocks-editable`
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(InnerBlocks, null))];
   },
   save: props => {
     // Lift info from props and populate various constants.
     const {
       attributes: {
-        arrowColor,
-        arrowWidth,
-        anchorLink
+        modalId
       }
     } = props;
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "buenavista-blocks-block buenavista-blocks-modal buenavista-blocks-editable modal-deactivate"
+      "data-modal-id": modalId,
+      className: `buenavista-blocks-block buenavista-blocks-modal modal-deactivate buenavista-blocks-editable`
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(InnerBlocks.Content, null));
   }
 });

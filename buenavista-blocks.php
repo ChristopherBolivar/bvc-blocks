@@ -180,6 +180,7 @@ add_action( 'init', 'bvc_work_archive_dynamic' );
 //enqueue style-index.css in the frontend
 function enqueue_style_index() {
 	wp_enqueue_style( 'style-index', plugins_url( '/build/style-index.css', __FILE__ ) );
+	wp_enqueue_script( 'modal', plugin_dir_url( __FILE__ )  . '/build/modal.js', array(), '1.0.0', true );
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_style_index' );
 
