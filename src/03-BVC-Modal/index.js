@@ -88,7 +88,12 @@ registerBlockType("buenavista-blocks/bvcmodal", {
 				</PanelBody>
 			</InspectorControls>,
 			<div data-modal-id={modalId} className={`buenavista-blocks-block buenavista-blocks-modal buenavista-blocks-editable`}>
+				<div className="exit-modal">
+
+				</div>
+				<div className="innerBlockModal">
 				<InnerBlocks />
+				</div>
 			</div>,
 		];
 	},
@@ -100,7 +105,12 @@ registerBlockType("buenavista-blocks/bvcmodal", {
 
 		return (
 			<div data-modal-id={modalId} className={`buenavista-blocks-block buenavista-blocks-modal modal-deactivate buenavista-blocks-editable`}>
+				<div className="exit-modal">
+
+				</div>
+				<div className="innerBlockModal">
 				<InnerBlocks.Content />
+				</div>
 			</div>
 		);
 	},

@@ -135,28 +135,41 @@
 	height: 100px;
 	overflow-x: hidden;
 }
-.buenavista-blocks-client-marquee::before, .buenavista-blocks-client-marquee::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 20%;
-  height: 100%;
-  background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 50%,rgba(255,255,255,0) 100%);
-  z-index: 2;
+.buenavista-blocks-client-marquee::before,
+.buenavista-blocks-client-marquee::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	width: 20%;
+	height: 100%;
+	background: linear-gradient(
+		to right,
+		rgba(255, 255, 255, 0) 0%,
+		rgba(255, 255, 255, 1) 50%,
+		rgba(255, 255, 255, 0) 100%
+	);
+	z-index: 2;
 }
 .buenavista-blocks-client-marquee::before {
 	top: 0;
 	left: 0;
-  background: rgb(255,255,255);
-background: linear-gradient(90deg, rgba(255,255,255,1) 50%, rgba(255,255,255,0) 100%);
+	background: rgb(255, 255, 255);
+	background: linear-gradient(
+		90deg,
+		rgba(255, 255, 255, 1) 50%,
+		rgba(255, 255, 255, 0) 100%
+	);
 }
 .buenavista-blocks-client-marquee::after {
-  top: 0;
-  right: 0;
-  background: rgb(255,255,255);
-background: linear-gradient(-90deg, rgba(255,255,255,1) 50%, rgba(255,255,255,0) 100%);
+	top: 0;
+	right: 0;
+	background: rgb(255, 255, 255);
+	background: linear-gradient(
+		-90deg,
+		rgba(255, 255, 255, 1) 50%,
+		rgba(255, 255, 255, 0) 100%
+	);
 }
-
 
 /* .bvc-before {
   width: 100px;
@@ -188,103 +201,233 @@ background: linear-gradient(-90deg, rgba(255,255,255,1) 50%, rgba(255,255,255,0)
 	}
 }
 .buenavista-blocks-work-wrapper {
-  display: grid;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  margin: 0px auto;
-  max-width: 80%;
+	display: grid;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	grid-template-columns: 1fr 1fr;
+	gap: 1rem;
+	margin: 0px auto;
+	max-width: 80%;
 }
 .buenavista-blocks-work-info-wrapper {
-  position: relative;
-  width: 100%;
-  height: 100%;
+	position: relative;
+	width: 100%;
+	height: 100%;
 }
 
 .buenavista-blocks-work-info-wrapper:hover .buenavista-blocks-work-overlay {
-  opacity: 1;
+	opacity: 1;
 }
 .buenavista-blocks-work-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: hsla(0, 79%, 72%, .8);
-  z-index: 90;
-  transition: opacity 0.5s;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  opacity: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: hsla(0, 79%, 72%, 0.8);
+	z-index: 90;
+	transition: opacity 0.5s;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	opacity: 0;
 }
-.buenavista-blocks-work-overlay h2, .buenavista-blocks-work-overlay p {
-  color: rgb(255, 255, 255) !important;
+.buenavista-blocks-work-overlay h2,
+.buenavista-blocks-work-overlay p {
+	color: rgb(255, 255, 255) !important;
 }
 .buenavista-blocks-work-overlay h2 {
-  font-size: 2rem;
-  margin: 0px;
+	font-size: 2rem;
+	margin: 0px;
 }
 .buenavista-blocks-work-info-wrapper:hover .buenavista-blocks-work-overlay {
-  opacity: 1;
+	opacity: 1;
 }
 .buenavista-blocks-work-image {
-  position: relative;
-  z-index: 80;
+	position: relative;
+	z-index: 80;
 }
 .buenavista-blocks-work-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 .buenavista-blocks-work-overlay > div {
-  width: 90%;
-  margin: 0px auto;
+	width: 90%;
+	margin: 0px auto;
 }
 .animatedFadeInUp {
-  opacity: 0;
+	opacity: 0;
 }
 .animated {
-  animation-duration: 1s;
-  animation-fill-mode: both;
+	animation-duration: 1s;
+	animation-fill-mode: both;
 }
 .fadeInUp {
-  -webkit-animation-name: fadeInUp;
-  animation-name: fadeInUp;
+	-webkit-animation-name: fadeInUp;
+	animation-name: fadeInUp;
 }
 .animated {
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
+	-webkit-animation-duration: 1s;
+	animation-duration: 1s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
 }
 .buenavista-blocks-work-overlay p {
-  font-size: 1.5rem;
-  border: 2px solid rgb(255, 255, 255);
-  padding: 0.5rem 1rem;
-  font-weight: 600;
-  transition: all 0.3s ease-in-out 0s;
-  max-width: 250px;
-  margin: 1rem auto;
+	font-size: 1.5rem;
+	border: 2px solid rgb(255, 255, 255);
+	padding: 0.5rem 1rem;
+	font-weight: 600;
+	transition: all 0.3s ease-in-out 0s;
+	max-width: 250px;
+	margin: 1rem auto;
 }
 .buenavista-blocks-work-overlay p:hover {
-  background-color: rgb(255, 255, 255);
-  color: rgb(0, 0, 0) !important;
+	background-color: rgb(255, 255, 255);
+	color: rgb(0, 0, 0) !important;
 }
+
+.buenavista-blocks-modal form,
+.buenavista-blocks-modal form label {
+	color: #fff;
+	font-weight: 600;
+}
+
+.buenavista-blocks-modal form input[type="submit"] {
+	background-color: #fff;
+	color: lightcoral;
+	font-weight: 600;
+	border: none;
+	padding: 0.5rem 1rem;
+	border-color: 2px solid #fff;
+	transition: all 0.3s ease-in-out 0s;
+}
+.buenavista-blocks-modal input[type="submit"]::before {
+	background: none;
+	border: 4px solid #fff;
+	content: " ";
+	display: block;
+	position: absolute !important;
+	top: 4px;
+	left: 4px;
+	right: 4px;
+	bottom: 4px;
+	pointer-events: none;
+}
+
+.buenavista-blocks-modal .wp-block-column {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
 @keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    -webkit-transform: translate3d(0, 100%, 0);
-    transform: translate3d(0, 100%, 0);
-  }
-  100% {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none;
-  }
+	0% {
+		opacity: 0;
+		-webkit-transform: translate3d(0, 100%, 0);
+		transform: translate3d(0, 100%, 0);
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: none;
+		transform: none;
+	}
+}
+
+/* Define the animation */
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes fade-in-up {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Apply the animation to the wrapper and the nested div */
+.buenavista-blocks-modal {
+	animation: fade-in 0.5s ease-in-out;
+}
+
+.buenavista-blocks-modal > .innerBlockModal {
+	animation: fade-in-up 0.5s ease-in-out;
+	width: 80%;
+	height: 100%;
+	margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* Define the fade-out animation */
+@keyframes fade-out {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+@keyframes float-up {
+	from {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	to {
+		opacity: 0;
+		transform: translateY(-20px);
+	}
+}
+
+/* Add the fade-out and float-up animations to the wrapper and nested div when the 'exit' class is added */
+.buenavista-blocks-modal.exit {
+	animation: fade-out 0.5s ease-in-out forwards,
+		float-up 0.5s ease-in-out forwards;
+}
+
+.buenavista-blocks-modal.exit > .innerBlockModal {
+	animation: float-up 0.5s ease-in-out forwards;
+  
+}
+
+.exit-modal::after {
+	position: absolute;
+	top: 50px;
+	left: 50px;
+	border: 5px solid #fff;
+	border-radius: 100%;
+	-webkit-transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	-o-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	color: #fff;
+	font-size: 44px;
+	content: "\d7";
+	width: 35px;
+	height: 35px;
+	text-align: center;
+	line-height: 35px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out 0s;
+
+}
+.exit-modal:hover::after {
+  background-color: #fff;
+  color: lightcoral
 }
 /* .modal-deactivate {
     display: none;
@@ -300,3 +443,48 @@ background: linear-gradient(-90deg, rgba(255,255,255,1) 50%, rgba(255,255,255,0)
     left: 0;
     padding: 1rem;
 } */
+
+figcaption {
+  background: lightcoral !important;
+  padding: .5rem !important;
+  display: block !important;
+  font-weight: 400 !important;
+}
+
+/* media query for tablet mobile devices*/
+@media only screen and (max-width: 768px) {
+
+  .buenavista-blocks-work-overlay p {
+    max-width: 100px;
+    padding: 0 .5rem .3rem .5rem;
+  }
+  .buenavista-blocks-work-overlay p a{
+    font-size: 1rem;
+  }
+  .buenavista-blocks-work-overlay h2 {
+    font-size: 1rem;
+  }
+  .buenavista-blocks-work-overlay > div {
+    width: 100%;
+  }
+  .buenavista-blocks-modal {
+    width: 100%;
+    height: 100%;
+  }
+  .buenavista-blocks-modal > .innerBlockModal {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .buenavista-blocks-work-wrapper {
+    grid-template-columns: 1fr ;
+    padding: 2rem;
+  }
+  .buenavista-blocks-work-wrapper .animated{
+    max-width: 100px;
+    padding: 0 .5rem .3rem .5rem;
+    padding: 2rem;
+    max-width: 80%;
+  }
+}

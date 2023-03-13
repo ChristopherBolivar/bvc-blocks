@@ -1,5 +1,4 @@
-console.log('hello')
-
+//activate modal when a link containing the modal id as an achor is clicked
 let bvcModals = document.querySelectorAll('.buenavista-blocks-modal');
 console.log(bvcModals);
 
@@ -16,10 +15,12 @@ console.log(bvcModals);
             bvcModals.forEach(function(modal) {
                 if(modal.dataset.modalId === hash ) {
                 modal.classList.remove('modal-deactivate');
+                modal.classList.remove('exit');
                 modal.classList.add('modal-activate');
                 } else {
                 modal.classList.remove('modal-activate');
                 modal.classList.add('modal-deactivate');
+                modal.classList.add('exit');
                 }
             });
         });
@@ -31,10 +32,32 @@ document.addEventListener('keydown', function(event) {
     if(event.key === 'Escape') {
         bvcModals.forEach(function(modal) {
             modal.classList.remove('modal-activate');
-            modal.classList.add('modal-deactivate');
+            modal.classList.add('exit');
+        
+            setTimeout(function() {
+                modal.classList.add('modal-deactivate');
+            }
+            , 2000);
+           
         });
     }
 }
 );
+
+//deactivate modal when exit button is clicked
+const exitModalButtons = document.querySelectorAll('.exit-modal');
+
+exitModalButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    bvcModals.forEach((modal) => {
+      modal.classList.add('exit');
+      setTimeout(function() {
+        modal.classList.add('modal-deactivate');
+    }
+    , 2000);
+    });
+  });
+});
+
     
 

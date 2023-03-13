@@ -358,7 +358,11 @@ registerBlockType("buenavista-blocks/bvcmodal", {
     }, "Activate Modal"))))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       "data-modal-id": modalId,
       className: `buenavista-blocks-block buenavista-blocks-modal buenavista-blocks-editable`
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(InnerBlocks, null))];
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "exit-modal"
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "innerBlockModal"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(InnerBlocks, null)))];
   },
   save: props => {
     // Lift info from props and populate various constants.
@@ -370,7 +374,11 @@ registerBlockType("buenavista-blocks/bvcmodal", {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
       "data-modal-id": modalId,
       className: `buenavista-blocks-block buenavista-blocks-modal modal-deactivate buenavista-blocks-editable`
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(InnerBlocks.Content, null));
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "exit-modal"
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+      className: "innerBlockModal"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(InnerBlocks.Content, null)));
   }
 });
 
